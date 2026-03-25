@@ -1,0 +1,7 @@
+bin/*
+build/*
+!bin/.gitkeep
+!build/.gitkeep
+
+*.exe
+*.o

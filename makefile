@@ -1,14 +1,21 @@
-snackaroo: snackaroo.o snackaroo_dish.o snackaroo_driver.o snackaroo_relationship.o
-	gcc -o snackaroo snackaroo.o snackaroo_dish.o snackaroo_driver.o snackaroo_relationship.o
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c11 -Iinclude
 
-snackaroo.o: snackaroo.c snackaroo.h snackaroo_dish.h snackaroo_driver.h snackaroo_relationship.h
-	gcc -c snackaroo.c
+TARGET = bin/snackaroo.exe
+HEADERS = include/snackaroo.h include/snackaroo_dish.h include/snackaroo_driver.h include/snackaroo_relationship.h
+OBJECTS = build/snackaroo.o build/snackaroo_dish.o build/snackaroo_driver.o build/snackaroo_relationship.o
 
-snackaroo_dish.o: snackaroo_dish.c snackaroo_dish.h snackaroo_relationship.h
-	gcc -c snackaroo_dish.c
+.PHONY: all clean rebuild
 
-snackaroo_driver.o: snackaroo_driver.c snackaroo_driver.h snackaroo_relationship.h
-	gcc -c snackaroo_driver.c
+all: $(TARGET)
 
-snackaroo_relationship.o: snackaroo_relationship.c snackaroo_relationship.h snackaroo_dish.h snackaroo_driver.h
-	gcc -c snackaroo_relationship.c
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $@
+
+build/%.o: src/%.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	powershell -NoProfile -Command "Remove-Item -LiteralPath 'build\\snackaroo.o','build\\snackaroo_dish.o','build\\snackaroo_driver.o','build\\snackaroo_relationship.o','bin\\snackaroo.exe' -Force -ErrorAction SilentlyContinue"
+
+rebuild: clean all
