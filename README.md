@@ -71,9 +71,6 @@ It helped me learn the basics of C by implementing linked lists to create a ligh
     `-- .gitkeep
 ```
 
-`build/` and `bin/` are reserved for generated artifacts and are ignored by Git.  
-`data/` is available for exported database files created by the program.
-
 ## Architecture
 
 ### `snackaroo.c`
@@ -139,7 +136,8 @@ This project demonstrates practical experience with:
 - add automated tests for validation and persistence logic
 - support text-based export formats such as CSV
 - introduce clearer error reporting and more robust recovery paths
-
+- implement a GUI for better visualization
+  
 ## Final Note
 
 This is a compact project, but it reflects the kind of foundational work that builds strong C programming instincts: understanding how data is stored, connected, validated, persisted, and cleaned up without the abstractions of higher-level tools.
